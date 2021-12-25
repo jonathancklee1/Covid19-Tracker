@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link rel="stylesheet" href="./style.css">
+   <title>CovidTracker</title>
+</head>
+
+<body>
+   <header class="banner">
+      <div class="title-div">
+         <h1 class="title">Covid-19 Tracker</h1>
+      </div>
+
+   </header>
+   <main>
+      <div class="description">
+         <p>This is a Covid-19 Tracker website
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias dicta sunt ea magnam corporis obcaecati
+            provident perferendis rem. Assumenda possimus minus repellat, quibusdam maxime expedita nam quaerat
+            distinctio tenetur adipisci ea eius, consectetur fuga neque velit itaque libero inventore. Asperiores
+            doloribus similique hic veniam officiis accusamus, ducimus amet perspiciatis provident!
+         </p>
+      </div>
+      <div class="starred-carousel">
+         <button id="carousel-button">
+            < </button>
+               <div class="carousel-container">
+                  <ul class="carousel-track">
+                     <li class="carousel-slide">Item 1</li>
+                     <li class="carousel-slide">Item 2</li>
+                     <li class="carousel-slide">Item 3</li>
+                  </ul>
+               </div>
+               <button id="carousel-button"> > </button>
+      </div>
+
+      <div class="filtering-bar">
+         <ul>
+            <li><input type="text" placeholder="Search" class="search-bar" onkeyup="search()"></li>
+            <li><a href="#">Filter</a>
+               <div class="filter-subclass">
+                  <ul>
+                     <li><a href="#">By Country</a></li>
+                     <li><a href="#">By New Cases</a></li>
+                     <li><a href="#">By Total Cases</a></li>
+                  </ul>
+               </div>
+            </li>
+         </ul>
+
+      </div>
+      <div class="country-container">
+         <ul class="country-list">
+         </ul>
+      </div>
+
+      <div class="modal">
+
+         <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <!-- <div class="country-flag"> -->
+            <img src="" alt="" class="country-flag-modal">
+
+            <h3 id="country-name-modal"></h3>
+            <div class="country-detail">
+
+               <p id="country-new-cases-modal"></p>
+               <p id="country-total-cases-modal"></p>
+               <p id="country-new-deaths-modal"></p>
+               <p id="country-total-deaths-modal"></p>
+            </div>
+
+
+         </div>
+      </div>
+   </main>
+   <footer>
+      <div class="copyright">Copyright</div>
+   </footer>
+   <script src="./index.js"></script>
+</body>
+
+</html>

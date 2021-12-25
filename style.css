@@ -1,0 +1,174 @@
+/* ===
+Imports
+=== */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap");
+
+/* ===
+Variables
+=== */
+:root {
+}
+
+/* ===
+Global Styles
+=== */
+*,
+*::after,
+*::before {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: "Poppins", sans-serif;
+  text-align: center;
+}
+li {
+  list-style-type: none;
+}
+p{
+  font-size: 1.1rem;
+}
+/* ===
+Global Classes
+=== */
+.banner {
+  height: 10em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.banner::after {
+  content: "";
+  background-image: url(./images/map.jpg);
+  height: 10em;
+  background-size: cover;
+  background-position: center;
+  opacity: 0.7;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  position: absolute;
+  z-index: -1;
+}
+.title-div {
+  opacity: 1;
+}
+.title {
+  text-align: center;
+  font-size: 3.5rem;
+}
+.description {
+  text-align: center;
+  margin: 1em auto;
+  width: 80%;
+}
+.starred-carousel {
+  margin: 2em auto;
+  width: 80%;
+  border: 2px solid black;
+}
+.country-container {
+  margin: 0 auto;
+  width: 80%;
+  border: 2px solid darkblue;
+  border-radius: 5px;
+}
+.country-list {
+  max-height: 20em;
+  overflow-y: scroll;
+  padding: 0.8em;
+}
+.country-item {
+  background-color: rgb(177, 223, 250);
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  padding: 1em;
+  border-radius: 10px;
+  margin: 0.5em auto;
+  cursor: pointer;
+}
+.country-item:hover,
+.country-item:focus {
+  -webkit-box-shadow: 0px 10px 13px -7px #000000,
+    5px 5px 15px 5px rgba(0, 0, 0, 0);
+  box-shadow: 0px 10px 13px -7px #000000, 5px 5px 15px 5px rgba(0, 0, 0, 0);
+}
+.country-name {
+  text-align: left;
+  margin-right: auto;
+  margin-left: 0.5em;
+  font-size: 0.9rem;
+  max-width: 150px;
+}
+.country-flag {
+  height: 3em;
+}
+
+.filtering-bar ul {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.filter-subclass {
+  display: none;
+}
+
+.search-bar{
+  width: 80%;
+  padding: .5em 1em;
+}
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.4);
+}
+.modal-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  background-color: #fefefe;
+  margin: auto;
+  padding: 3em;
+  border: 1px solid #888;
+  width: 80%;
+  max-width: 40em;
+  border-radius: 10px;
+}
+.modal-content p {
+  margin-bottom: 0.7em;
+}
+.country-flag-modal {
+  max-width: 100px;
+  margin: 1em auto;
+}
+#country-name-modal {
+  font-size: 1.5rem;
+  margin-bottom: 1.5em;
+}
+.close-btn {
+  color: #aaaaaa;
+  position: absolute;
+  top: 0.5em;
+  right: 1em;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+footer {
+  /* position: absolute;
+  bottom: 0;
+  width: 100%; */
+}
