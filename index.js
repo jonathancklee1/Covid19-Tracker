@@ -17,20 +17,109 @@ const countryTotalDeathsModal = document.getElementById(
 );
 const countryFlagModal = document.querySelector(".country-flag-modal");
 const searchBar = document.querySelector(".search-bar");
+const sortBtn = document.querySelector(".sort-btn");
+const sortDropdown = document.querySelector(".sort-dropdown");
 
+const nameSortAZ = document.getElementById("sort-name-A-Z");
+const nameSortZA = document.getElementById("sort-name-Z-A");
+const caseSortAsc = document.getElementById("sort-case-asc");
+const caseSortDesc = document.getElementById("sort-case-desc");
+
+nameSortAZ.addEventListener("click", () => {
+  sortList("alphaAZ");
+});
+nameSortZA.addEventListener("click", () => {
+  sortList("alphaZA");
+});
+caseSortAsc.addEventListener("click", () => {
+  sortList("caseAsc");
+});
+caseSortDesc.addEventListener("click", () => {
+  sortList("caseDesc");
+});
+
+// Sort list of countries based on which sort type is pressed
+function sortList(type) {
+  let i, switching, li, shouldSwitch;
+  switching = true;
+  /* Make a loop that will continue until
+  no switching has been done: */
+  while (switching) {
+    // Start by saying: no switching is done:
+    switching = false;
+    li = countryList.getElementsByTagName("LI");
+    // Loop through all list items:
+    for (i = 0; i < li.length - 1; i++) {
+      // Start by saying there should be no switching:
+      shouldSwitch = false;
+      /* Check if the next item should
+      switch place with the current item: */
+      switch (type) {
+        case "alphaAZ":
+          if (
+            li[i].childNodes[1].innerHTML.toLowerCase() >
+            li[i + 1].childNodes[1].innerHTML.toLowerCase()
+          ) {
+            /* If next item is alphabetically lower than current item,
+        mark as a switch and break the loop: */
+            shouldSwitch = true;
+            break;
+          }
+          break;
+        case "alphaZA":
+          if (
+            li[i].childNodes[1].innerHTML.toLowerCase() <
+            li[i + 1].childNodes[1].innerHTML.toLowerCase()
+          ) {
+            shouldSwitch = true;
+            break;
+          }
+          break;
+        case "caseAsc":
+          if (
+            Number(li[i].childNodes[2].innerHTML) >
+            Number(li[i + 1].childNodes[2].innerHTML)
+          ) {
+            shouldSwitch = true;
+            break;
+          }
+          break;
+        case "caseDesc":
+          if (
+            Number(li[i].childNodes[2].innerHTML) <
+            Number(li[i + 1].childNodes[2].innerHTML)
+          ) {
+            shouldSwitch = true;
+            break;
+          }
+          break;
+      }
+      if (shouldSwitch) {
+        /* If a switch has been marked, make the switch
+      and mark the switch as done: */
+        li[i].parentNode.insertBefore(li[i + 1], li[i]);
+        switching = true;
+      }
+    }
+  }
+  sortDropdown.classList.remove("active");
+}
+// Search Country List function
 function search() {
-  let value = searchBar.value.toUpperCase();
-  let name;
-  for (let i = 0; i < countryList.length; i++) {
-    name = countryItem[i].getElementsByTagName("h2")[0];
-    let txtValue = name.textContent || name.innerText;
-    if (txtValue.toUpperCase().indexOf(value) > -1) {
-      countryItem[i].style.display = "";
+  let filter = searchBar.value.toUpperCase();
+  let name, txtValue;
+  let li = countryList.getElementsByTagName("li");
+  for (let i = 0; i < li.length; i++) {
+    name = li[i].getElementsByTagName("h2")[0];
+    txtValue = name.textContent || name.innerText;
+    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+      li[i].style.display = "";
     } else {
-      countryItem[i].style.display = "none";
+      li[i].style.display = "none";
     }
   }
 }
+
 window.onload = () => {
   fetch(covid_url)
     .then((response) => response.json())
@@ -53,8 +142,9 @@ window.onload = () => {
         li.setAttribute("class", "country-item");
         li.appendChild(p);
         countryList.appendChild(li);
-        console.log(data.Countries[i]);
+        // console.log(data.Countries[i]);
       }
+      // Modal Detail
       const countryItem = document.querySelectorAll(".country-item");
       countryItem.forEach((item) => {
         item.addEventListener("click", (e) => {
@@ -79,15 +169,6 @@ window.onload = () => {
     .catch((error) => alert("Cannot retrieve data"));
 };
 
-// function getCountryCode() {
-//   fetch("https://flagcdn.com/en/codes.json")
-//     .then((response) => response.json())
-//     .then((data) => {
-//       // console.log(data);
-//     });
-// }
-// getCountryCode();
-
 // Modal Close Functions
 window.onclick = (event) => {
   if (event.target == modal) {
@@ -98,3 +179,7 @@ window.onclick = (event) => {
 closeModalBtn.onclick = () => {
   modal.style.display = "none";
 };
+
+sortBtn.addEventListener("click", () => {
+  sortDropdown.classList.toggle("active");
+});

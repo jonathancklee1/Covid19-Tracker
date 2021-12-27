@@ -38,15 +38,16 @@
                <button id="carousel-button"> > </button>
       </div>
 
-      <div class="filtering-bar">
+      <div class="sort-bar">
          <ul>
             <li><input type="text" placeholder="Search" class="search-bar" onkeyup="search()"></li>
-            <li><a href="#">Filter</a>
-               <div class="filter-subclass">
+            <li><button href="" class="sort-btn">Sort By</button>
+               <div class="sort-dropdown">
                   <ul>
-                     <li><a href="#">By Country</a></li>
-                     <li><a href="#">By New Cases</a></li>
-                     <li><a href="#">By Total Cases</a></li>
+                     <li><button href="#" class="sub-sort-btn" id="sort-name-A-Z">Country A-Z</button></li>
+                     <li><button href="#" class="sub-sort-btn" id="sort-name-Z-A">Country Z-A</button></li>
+                     <li><button href="#" class="sub-sort-btn" id="sort-case-desc">New Cases Asc</button></li>
+                     <li><button href="#" class="sub-sort-btn" id="sort-case-asc">New Cases Desc</button></li>
                   </ul>
                </div>
             </li>
@@ -62,7 +63,7 @@
 
          <div class="modal-content">
             <span class="close-btn">&times;</span>
-            <!-- <div class="country-flag"> -->
+
             <img src="" alt="" class="country-flag-modal">
 
             <h3 id="country-name-modal"></h3>
