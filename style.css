@@ -78,21 +78,38 @@ Global Classes
   border: 2px solid black;
   padding: 1em;
 }
-.fav-country-item{
+.fav-country-name {
+  font-size: 1rem;
+}
+.fav-country-item {
   cursor: pointer;
+  position: relative;
+}
+#no-fav-text {
+  margin: 0 auto;
+}
+.del-country-btn {
+  /* background-color: darkblue; */
+  font-size: 1rem;
+  position: absolute;
+  top: 0.5em;
+  right: 0.5em;
+  height: 1.5em;
+  width: 1.5em;
 }
 .carousel-track {
   overflow-x: scroll;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  /* justify-content: space-evenly; */
 }
 .carousel-track li {
   border: 1px solid red;
   padding: 1.5em;
   height: 9.6em;
-  min-width: 12.5em;
-  max-width: 12.5em;
+  min-width: 15em;
+  max-width: 15em;
+  overflow-y: hidden;
 }
 .country-container {
   margin: 0 auto;
