@@ -14,54 +14,48 @@
 <body>
    <header class="banner">
       <div class="title-div">
-         <h1 class="title">Covid-19 Tracker</h1>
+         <h1 class="title">COVID-19 Tracker</h1>
       </div>
-
    </header>
    <main>
       <div class="description">
-         <p>This is a Covid-19 Tracker website
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias dicta sunt ea magnam corporis obcaecati
-            provident perferendis rem. Assumenda possimus minus repellat, quibusdam maxime expedita nam quaerat
-            distinctio tenetur adipisci ea eius, consectetur fuga neque velit itaque libero inventore. Asperiores
-            doloribus similique hic veniam officiis accusamus, ducimus amet perspiciatis provident!
-         </p>
+         <div class="overlay">
+            <p>This is a COVID-19 Tracker website. <br>Data is extracted using an API from <a
+                  href="https://covid19api.com/">https://covid19api.com/</a>, a free service for COVID-19 related
+               information. View information on every country's COVID-19 situation below.
+
+            </p>
+         </div>
       </div>
-      <h2>Favourited Countries</h2>
+      <h2>Your Favourited Countries</h2>
       <div class="starred-carousel">
 
-         <!-- <button id="carousel-button">
-            < </button> -->
          <div class="carousel-container">
             <ul class="carousel-track">
-               <h2 id="no-fav-text">No Favourites Added!</h2>
-               <!-- <li>No Favourites Added</li> -->
+               <h4 id="no-fav-text">No Favourites Added!</h4>
+
             </ul>
          </div>
-         <!-- <button id="carousel-button"> > </button> -->
-      </div>
-
-      <div class="sort-bar">
-         <ul>
-            <li><input type="text" placeholder="Search" class="search-bar" onkeyup="search()"></li>
-            <li><button class="sort-btn">Sort By</button>
-               <div class="sort-dropdown">
-                  <ul>
-                     <li><button href="#" class="sub-sort-btn" id="sort-name-A-Z">Country A-Z</button></li>
-                     <li><button href="#" class="sub-sort-btn" id="sort-name-Z-A">Country Z-A</button></li>
-                     <li><button href="#" class="sub-sort-btn" id="sort-case-desc">New Cases Asc</button></li>
-                     <li><button href="#" class="sub-sort-btn" id="sort-case-asc">New Cases Desc</button></li>
-                  </ul>
-               </div>
-            </li>
-            <li><button class="favourites-btn">Add to Favourites</button></li>
-
-         </ul>
 
       </div>
+
+
+      <button class="favourites-btn">Add Selected To Favourites</button>
+
       <div class="country-container">
-         <h3>All Countries</h3>
+         <h2>All Countries</h2>
          <p class="date-text"></p>
+         <input type="text" placeholder="Search" class="search-bar" onkeyup="search()">
+         <button class="sort-btn">Sort By</button>
+         <div class="sort-dropdown">
+            <ul>
+               <li><button href="#" class="sub-sort-btn" id="sort-name-A-Z">Country A-Z</button></li>
+               <li><button href="#" class="sub-sort-btn" id="sort-name-Z-A">Country Z-A</button></li>
+               <li><button href="#" class="sub-sort-btn" id="sort-case-desc">New Cases Asc</button></li>
+               <li><button href="#" class="sub-sort-btn" id="sort-case-asc">New Cases Desc</button></li>
+            </ul>
+         </div>
+
          <ul class="country-list">
          </ul>
       </div>
