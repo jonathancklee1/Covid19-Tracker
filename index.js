@@ -57,8 +57,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
 
     countryItem.forEach((item) => {
       item.addEventListener("click", (e) => {
-        let countryName = e.target.childNodes[2].innerHTML;
-        displayModal(data, countryName);
+        displayModal(data, e.target.childNodes[2].innerHTML);
       });
     });
     displayLS();
@@ -80,8 +79,8 @@ function displayLS() {
     const favCountryItem = document.querySelectorAll(".fav-country-item");
     favCountryItem.forEach((item) => {
       item.addEventListener("click", (e) => {
-        let favCountryName = e.target.childNodes[2].innerHTML;
-        displayModal(data, favCountryName);
+        let countryName = e.target.childNodes[2].innerHTML;
+        displayModal(data, countryName);
       });
 
       // Update new cases
@@ -89,19 +88,20 @@ function displayLS() {
         if (data.Countries[i].Country == item.childNodes[2].innerHTML)
           item.childNodes[3].innerHTML = `+${data.Countries[i].NewConfirmed}`;
       }
-    });
 
-    const deleteBtn = document.querySelectorAll(".del-country-btn");
-    deleteBtn.forEach((btn) => {
-      btn.addEventListener("click", () => {
-        btn.parentElement.remove();
-        btn.parentElement.childNodes[0].removeAttribute("disabled");
-        localStorage.removeItem(btn.parentElement.childNodes[2].innerHTML);
-        checkIfFavEmpty();
+      disableCheckbox(`${item.childNodes[2].innerHTML}`);
+
+      const deleteBtn = document.querySelectorAll(".del-country-btn");
+      deleteBtn.forEach((btn) => {
+        btn.addEventListener("click", () => {
+          btn.parentElement.remove();
+          btn.parentElement.childNodes[0].removeAttribute("disabled");
+          enableCheckbox(`${item.childNodes[2].innerHTML}`);
+          localStorage.removeItem(btn.parentElement.childNodes[2].innerHTML);
+          checkIfFavEmpty();
+        });
       });
     });
-
-    countryItem.forEach((li) => {});
   });
 }
 
@@ -118,8 +118,6 @@ function checkIfFavEmpty() {
 
 // Add selected countries to favourites container
 favCountryBtn.addEventListener("click", () => {
-  getChecked();
-  noneChecked = true;
   getData().then((data) => {
     const favCountryItem = document.querySelectorAll(".fav-country-item");
     favCountryItem.forEach((item) => {
@@ -129,9 +127,31 @@ favCountryBtn.addEventListener("click", () => {
       });
     });
   });
+  getChecked();
+  noneChecked = true;
   checkIfFavEmpty();
 });
 
+// Disables Country List checkbox
+function disableCheckbox(country) {
+  countryItem = document.querySelectorAll(".country-item");
+  countryItem.forEach((item) => {
+    if (item.childNodes[2].innerHTML == country) {
+      item.childNodes[0].setAttribute("disabled", "true");
+      item.childNodes[0].checked = false;
+    }
+  });
+}
+
+// Enables Country List checkbox
+function enableCheckbox(country) {
+  countryItem = document.querySelectorAll(".country-item");
+  countryItem.forEach((item) => {
+    if (item.childNodes[2].innerHTML == country) {
+      item.childNodes[0].removeAttribute("disabled");
+    }
+  });
+}
 // Loop through country list to see checked country
 function getChecked() {
   countryItem = document.querySelectorAll(".country-item");
@@ -149,9 +169,9 @@ function getChecked() {
       localStorage.setItem(`${newLi.childNodes[2].innerHTML}`, newLi.outerHTML);
 
       favCarousel.appendChild(newLi);
-
-      item.childNodes[0].setAttribute("disabled", "true");
-      item.childNodes[0].checked = false;
+      disableCheckbox(`${newLi.childNodes[2].innerHTML}`);
+      // item.childNodes[0].setAttribute("disabled", "true");
+      // item.childNodes[0].checked = false;
       noneChecked = false;
       // Add delete button
       btn.addEventListener("click", () => {
@@ -160,6 +180,8 @@ function getChecked() {
         localStorage.removeItem(newLi.childNodes[2].innerHTML);
         checkIfFavEmpty();
       });
+
+      console.log(`${newLi.childNodes[2].innerHTML}`);
     }
   });
   if (noneChecked) {
