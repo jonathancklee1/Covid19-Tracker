@@ -1,7 +1,7 @@
 let covid_url = `https://api.covid19api.com/summary`;
 
 const countryList = document.querySelector(".country-list");
-let countryItem = document.querySelectorAll(".country-item");
+const countryItem = document.querySelectorAll(".country-item");
 const modal = document.querySelector(".modal");
 const closeModalBtn = document.querySelector(".close-btn");
 const countryNameModal = document.getElementById("country-name-modal");
@@ -170,8 +170,7 @@ function getChecked() {
 
       favCarousel.appendChild(newLi);
       disableCheckbox(`${newLi.childNodes[2].innerHTML}`);
-      // item.childNodes[0].setAttribute("disabled", "true");
-      // item.childNodes[0].checked = false;
+
       noneChecked = false;
       // Add delete button
       btn.addEventListener("click", () => {
@@ -202,6 +201,11 @@ function getData() {
         } else {
           reject("Data is unavailable");
         }
+      })
+      .catch(() => {
+        alert(
+          "Data is unavailable now. This may be due to an error in the COVID-19 api. Please try again later!"
+        );
       });
   });
 }
@@ -225,6 +229,7 @@ function displayModal(jData, cName) {
 
 // Render list of all countries from data into list format
 function displayCountryList(data) {
+  console.log(data);
   date.innerHTML = `Updated on ${data.Date.substring(0, 10)}`;
   for (let i in data.Countries) {
     let li = document.createElement("li");
