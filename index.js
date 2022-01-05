@@ -1,7 +1,6 @@
 let covid_url = `https://api.covid19api.com/summary`;
-
+let countryItem = document.querySelectorAll(".country-item");
 const countryList = document.querySelector(".country-list");
-const countryItem = document.querySelectorAll(".country-item");
 const modal = document.querySelector(".modal");
 const closeModalBtn = document.querySelector(".close-btn");
 const countryNameModal = document.getElementById("country-name-modal");
@@ -57,7 +56,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
 
     countryItem.forEach((item) => {
       item.addEventListener("click", (e) => {
-        displayModal(data, e.target.childNodes[2].innerHTML);
+        displayModal(data, e.currentTarget.childNodes[2].innerHTML);
       });
     });
     displayLS();
@@ -122,7 +121,7 @@ favCountryBtn.addEventListener("click", () => {
     const favCountryItem = document.querySelectorAll(".fav-country-item");
     favCountryItem.forEach((item) => {
       item.addEventListener("click", (e) => {
-        let favCountryName = e.target.childNodes[2].innerHTML;
+        let favCountryName = e.currentTarget.childNodes[2].innerHTML;
         displayModal(data, favCountryName);
       });
     });
@@ -161,6 +160,7 @@ function getChecked() {
       let newLi = item.cloneNode(true);
       let btn = document.createElement("button");
       btn.setAttribute("class", "del-country-btn");
+      btn.setAttribute("onclick", "event.stopPropagation()");
       btn.innerHTML = `<i class="fas fa-times"></i>`;
       newLi.setAttribute("class", "fav-country-item");
       newLi.childNodes[2].setAttribute("class", "fav-country-name");
@@ -239,6 +239,7 @@ function displayCountryList(data) {
     let checkbox = document.createElement("INPUT");
     checkbox.setAttribute("type", "checkbox");
     checkbox.setAttribute("class", "country-cb");
+    checkbox.setAttribute("onclick", "event.stopPropagation()");
     checkbox.value = `${data.Countries[i].Country}`;
     let countryCode = data.Countries[i].CountryCode;
     h2.appendChild(document.createTextNode(`${data.Countries[i].Country}`));
