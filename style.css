@@ -7,8 +7,12 @@ Imports
 Variables
 === */
 :root {
-  --primary-purple: rgb(96, 81, 110);
-  --primary-light-purple: rgb(235, 213, 245);
+  --primary-blue: rgb(29, 31, 53);
+  --primary-grey: rgb(179, 179, 179);
+  --black: black;
+  --white: white;
+  --border: #888;
+ 
 }
 
 /* ===
@@ -30,7 +34,7 @@ li {
 }
 a {
   /* text-decoration: none; */
-  color: white;
+  color: var(--white);
 }
 p {
   font-size: 1.1rem;
@@ -38,14 +42,14 @@ p {
 button {
   border: none;
   cursor: pointer;
-  background-color: white;
+  background-color: var(--white);
 }
 /* ===
 Global Classes
 === */
 main {
-  background-color: var(--primary-purple);
-  color: white;
+  background-color: var(--primary-blue);
+  color: var(--white);
   padding-bottom: 3em;
 }
 .banner {
@@ -80,7 +84,7 @@ main {
   width: 100%;
   top: 0;
   left: 0;
-  color: white;
+  color: var(--white);
   background: rgba(0, 0, 0, 0.55);
   display: grid;
   align-items: center;
@@ -92,7 +96,7 @@ main {
 .starred-carousel {
   margin: 1.5em auto 2.5em auto;
   width: 80%;
-  border: 2px solid rgb(255, 255, 255);
+  border: 2px solid var(--white);
   border-radius: 10px;
   padding: 1em;
   max-width: 900px;
@@ -118,9 +122,9 @@ main {
 .favourites-btn,
 .sort-btn {
   width: 40%;
-  color: white;
-  border: 1px solid white;
-  background-color: var(--primary-purple);
+  color: var(--white);
+  border: 1px solid var(--white);
+  background-color: var(--primary-blue);
   border-radius: 10px;
   padding: 0.7em;
   font-size: 1rem;
@@ -135,8 +139,8 @@ main {
 .favourites-btn:focus,
 .sort-btn:hover,
 .sort-btn:focus {
-  color: var(--primary-purple);
-  background-color: white;
+  color: var(--primary-blue);
+  background-color: var(--white);
 }
 #no-fav-text {
   margin: 0 auto;
@@ -163,7 +167,7 @@ main {
 
 .carousel-track li {
   border-radius: 10px;
-  background-color: rgb(198, 191, 236);
+  background-color: var(--primary-grey);
   color: black;
   padding: 1.5em;
   height: 9.6em;
@@ -181,13 +185,13 @@ main {
   max-height: 30em;
   overflow-y: scroll;
   padding: 0.8em;
-  background-color: white;
+  background-color: var(--white);
   border-radius: 10px;
 
   margin: 0 auto;
 }
 .country-item {
-  background-color: rgb(235, 213, 245);
+  background-color: var(--primary-grey);
   color: black;
   display: flex;
   justify-content: space-evenly;
@@ -237,7 +241,7 @@ main {
   margin: 0 auto;
   padding: 1em;
   border-radius: 10px;
-  background-color: rgb(169, 148, 175);
+  background-color: var(--primary-grey);
   opacity: 0.95;
 }
 
@@ -251,7 +255,7 @@ main {
   height: 0;
   border-left: 1em solid transparent;
   border-right: 1em solid transparent;
-  border-bottom: 1em solid rgb(169, 148, 175);
+  border-bottom: 1em solid var(--primary-grey);
 }
 .sort-dropdown.active {
   display: block;
@@ -266,7 +270,7 @@ main {
   border-radius: 10px;
   padding: 1em;
   font-size: 1rem;
-  color: var(--primary-purple);
+  color: var(--primary-blue);
 }
 
 .search-bar {
@@ -296,10 +300,10 @@ main {
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
-  background-color: #fefefe;
+  background-color: var(--white);
   margin: auto;
   padding: 3em;
-  border: 1px solid #888;
+  border: 1px solid var(--border);
   width: 80%;
   max-width: 40em;
   border-radius: 10px;

@@ -30,6 +30,8 @@ const caseSortDesc = document.getElementById("sort-case-desc");
 
 let noneChecked = true;
 
+let favCountryArray = [];
+
 // Eventlisteners
 nameSortAZ.addEventListener("click", () => {
   sortList("alphaAZ");
@@ -69,10 +71,10 @@ window.addEventListener("DOMContentLoaded", (event) => {
 // Display list items in local storage and set new eventListeners
 function displayLS() {
   getData().then((data) => {
-    for (var i = 0; i < localStorage.length; i++) {
-      let lsLi = localStorage.getItem(localStorage.key(i));
-      console.log(lsLi);
-      favCarousel.insertAdjacentHTML("beforeend", lsLi);
+    favCountryArray = JSON.parse(localStorage.getItem("fav-countries")) || [];
+
+    for (let i in favCountryArray) {
+      favCarousel.insertAdjacentHTML("beforeend", favCountryArray[i].content);
       checkIfFavEmpty();
     }
     const favCountryItem = document.querySelectorAll(".fav-country-item");
@@ -96,7 +98,19 @@ function displayLS() {
           btn.parentElement.remove();
           btn.parentElement.childNodes[0].removeAttribute("disabled");
           enableCheckbox(`${item.childNodes[2].innerHTML}`);
-          localStorage.removeItem(btn.parentElement.childNodes[2].innerHTML);
+          favCountryArray = JSON.parse(localStorage.getItem("fav-countries"));
+
+          favCountryArray = favCountryArray.filter(
+            (item) =>
+              item.countryName !== btn.parentElement.childNodes[2].innerHTML
+          );
+
+          console.log(favCountryArray);
+
+          localStorage.setItem(
+            "fav-countries",
+            JSON.stringify(favCountryArray)
+          );
           checkIfFavEmpty();
         });
       });
@@ -166,7 +180,24 @@ function getChecked() {
       newLi.childNodes[2].setAttribute("class", "fav-country-name");
       newLi.childNodes[0].style.visibility = "hidden";
       newLi.appendChild(btn);
-      localStorage.setItem(`${newLi.childNodes[2].innerHTML}`, newLi.outerHTML);
+
+      console.log(favCountryArray);
+      if (
+        !favCountryArray.includes({
+          countryName: newLi.childNodes[2].innerHTML,
+          content: newLi.outerHTML,
+        })
+        // favCountryArray.some(
+        //   (item) => item.countryName !== newLi.childNodes[2].innerHTML
+        // )
+      ) {
+        favCountryArray.push({
+          countryName: newLi.childNodes[2].innerHTML,
+          content: newLi.outerHTML,
+        });
+      }
+      console.log(favCountryArray);
+      localStorage.setItem("fav-countries", JSON.stringify(favCountryArray));
 
       favCarousel.appendChild(newLi);
       disableCheckbox(`${newLi.childNodes[2].innerHTML}`);
@@ -174,13 +205,18 @@ function getChecked() {
       noneChecked = false;
       // Add delete button
       btn.addEventListener("click", () => {
+        console.log(newLi.childNodes[2].innerHTML);
+        favCountryArray = favCountryArray.filter(
+          (item) => item.countryName !== newLi.childNodes[2].innerHTML
+        );
+        console.log(favCountryArray);
+        localStorage.setItem("fav-countries", JSON.stringify(favCountryArray));
+
         btn.parentElement.remove();
         item.childNodes[0].removeAttribute("disabled");
-        localStorage.removeItem(newLi.childNodes[2].innerHTML);
+
         checkIfFavEmpty();
       });
-
-      console.log(`${newLi.childNodes[2].innerHTML}`);
     }
   });
   if (noneChecked) {
